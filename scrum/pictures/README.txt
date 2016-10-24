@@ -1,0 +1,1 @@
+Hier werden regelm‰ﬂig Bilder der Burndown Charts und des aktuellen "Scrum-Boards" abgelegt um den historischen Verlauf darzustellen.

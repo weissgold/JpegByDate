@@ -1,0 +1,26 @@
+2016-10-06
+Erste Besprechung
+	- Festlegung auf Agile Methode = Scrum
+	- Terminplanung
+
+2016-10-12
+Sprint Planning Meeting (Explorationssprint)
+	- Festlegung der Scrum Rollen
+	- Erstellung des Sprint Backlogs (siehe Excel)
+
+2016-10-17
+"Daily" Scrum
+
+2016-10-20
+"Daily" Scrum
+
+2016-10-24
+Sprint Review & Retrospektive (Explorationssprint)
+	- Fortschritt des Explorationssprint (Buildserver nicht erledigt! Rest OK)
+	- Festlegung der Standards (Dokumentation -> NaturalDocs)
+	- Problematik Zeit (WebEngineering Hütte & Datenbank Nachschreiber)
+	- Verbesserung sollte nach Abschluss der Nachklausur gegeben sein
+Sprint Planning Meeting (Sprint 1)
+	- Erstellung des Sprint Backlogs (siehe backlog_20161024.png)
+	- Einrichtung der GitHub Umgebung
+	- UML first draft als gemeinsame Basis für Entwicklung

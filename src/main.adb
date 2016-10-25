@@ -1,5 +1,9 @@
-with Ada.Text_IO; use Ada.Text_IO;
-          procedure Main is
-          begin
-            Put_Line("Hello World!");
-          end Main;
+-- Verwende Output-Package
+with Output; use Output;
+
+-- Hauptfunktion
+procedure Main is
+begin
+   -- Zahl anzeigen
+   output.display(127);
+end Main;

@@ -7,5 +7,7 @@ project JpegByDate is
       for Vcs_Kind use "Git";
    end Ide;
 
+   for Source_Files use ("main.adb", "output.adb", "output.ads");
+
 end JpegByDate;
 

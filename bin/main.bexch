@@ -1,19 +1,20 @@
 [GENERATED OBJECT FILE]
 b__main.o
 [PROJECT FILES]
-C:\Users\Lukas\z_Agil\JpegByDate\src\jpegbydate.gpr
-20161024213044
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\src\jpegbydate.gpr
+20161025162930
 [BOUND OBJECT FILES]
-C:\Users\Lukas\z_Agil\JpegByDate\bin\main.o
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\output.o
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\main.o
 [GENERATED SOURCE FILES]
 b__main.ads
 b__main.adb
 b__main.ali
 [RESULTING OPTIONS]
--LC:\Users\Lukas\z_Agil\JpegByDate\bin\
--LC:\Users\Lukas\z_Agil\JpegByDate\bin\
--LL:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
+-LC:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\
+-LC:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\
+-LC:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
 -static
 -static-libgcc
-L:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/libgnat.a
+C:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/libgnat.a
 -Wl,--stack=0x2000000

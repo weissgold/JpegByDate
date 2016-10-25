@@ -24,3 +24,6 @@ Sprint Planning Meeting (Sprint 1)
 	- Erstellung des Sprint Backlogs (siehe backlog_20161024.png)
 	- Einrichtung der GitHub Umgebung
 	- UML first draft als gemeinsame Basis für Entwicklung
+
+2016-10-25
+"Daily" Scrum

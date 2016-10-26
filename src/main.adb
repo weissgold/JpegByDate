@@ -11,6 +11,7 @@ begin
    -- Eingabe verarbeiten
    Inputs.parse(input_parser);
    Outputs.display(Integer'Image(Inputs.getParamCount(input_parser)));
+   Outputs.display(Inputs.getDateString(input_parser));
 
    -- Strings anzeigen
    declare

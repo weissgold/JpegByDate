@@ -7,22 +7,30 @@ P SS ZX
 RN
 RV NO_ALLOCATORS
 RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
 RV NO_IMPLICIT_CONDITIONALS
 RV NO_LOCAL_ALLOCATORS
 RV NO_SECONDARY_STACK
 RV NO_STANDARD_STORAGE_POOLS
 RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U inputs%b		inputs.adb		59879882 NE OO PK
+U inputs%b		inputs.adb		76eb9383 NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
 W globals%s		globals.ads		globals.ali
+W gnat%s		gnat.ads		gnat.ali
+W gnat.regexp%s		g-regexp.ads		g-regexp.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
 
-U inputs%s		inputs.ads		36abb803 EE OO PF PK
+U inputs%s		inputs.ads		6615249f EE OO PF PK
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.streams%s		a-stream.adb		a-stream.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
@@ -31,6 +39,7 @@ W system%s		system.ads		system.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.storage_elements%s  s-stoele.adb	s-stoele.ali
 W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+W system.strings.stream_ops%s  s-ststop.adb	s-ststop.ali
 
 D ada.ads		20160516092928 3ffc8e18 ada%s
 D a-charac.ads		20160516092930 2d3ec45b ada.characters%s
@@ -44,15 +53,19 @@ D a-strmap.ads		20160516092930 e8bb714a ada.strings.maps%s
 D a-strunb.ads		20160516092928 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
-D globals.ads		20161026115420 f1d3245c globals%s
-D inputs.ads		20161026131038 c7789c5f inputs%s
-D inputs.adb		20161026131816 854e8f3d inputs%b
+D a-uncdea.ads		20160516092930 f15a5ed1 ada.unchecked_deallocation%s
+D globals.ads		20161026144220 a3a2a0de globals%s
+D gnat.ads		20160516092932 fd2ad2f1 gnat%s
+D g-regexp.ads		20160516092930 691be386 gnat.regexp%s
+D inputs.ads		20161026143758 c5b78441 inputs%s
+D inputs.adb		20161026144150 9387fb26 inputs%b
 D system.ads		20160516092930 2da59038 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-exctab.ads		20160516092930 54135002 system.exception_table%s
 D s-finmas.ads		20160516092930 7811a767 system.finalization_masters%s
 D s-finroo.ads		20160516092930 4ff27390 system.finalization_root%s
 D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-regexp.ads		20160516092932 9c7d27a7 system.regexp%s
 D s-secsta.ads		20160516092930 86a2856d system.secondary_stack%s
 D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
 D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
@@ -62,23 +75,44 @@ D s-stoele.adb		20160516092930 ed88f8fb system.storage_elements%b
 D s-stopoo.ads		20160516092928 b16154c2 system.storage_pools%s
 D s-stposu.ads		20160516092926 97a6219c system.storage_pools.subpools%s
 D s-stratt.ads		20160516092926 aedef97e system.stream_attributes%s
+D s-string.ads		20160516092930 8fe54fb7 system.strings%s
+D s-ststop.ads		20160516092928 e6693757 system.strings.stream_ops%s
 D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 X 1 ada.ads
-16K9*Ada 19e8 15|3r6 17r31
+16K9*Ada 19e8 18|3r6 20r31 27r13 32r37 33r43
 X 4 a-comlin.ads
-38K13*Command_Line 139e21 15|3w10 17r35
-41V13*Argument_Count{natural} 15|17s48
-X 13 globals.ads
-5K9*Globals 11e12 14|2w6 15|2w6
-X 14 inputs.ads
-5K9*Inputs 19E9 24l5 24e11 15|6b14 26l5 26t11
-7R9*Input 8r30 19c9 22e17 15|11r18
-8P9*Input_Type(7R9) 11r27 12r26 15r33 15|9r27 15r26 21r33
-11V13*create{8P9} 15|9b13 12l8 12t14
-12U14*parse 12>20 15|15b14 18l8 18t13
-12p20 This{8P9} 15|15b20 17r7
-15V13*getParamCount{integer} 15>27 15|21b13 24l8 24t21
-15p27 This{8P9} 15|21b27 23r14
-21i10*param_count{integer} 15|17m16 23r23
+38K13*Command_Line 139e21 18|3w10 20r35 27r17 32r41 33r47
+41V13*Argument_Count{natural} 18|20s48
+48V13*Argument{string} 18|27s30 32s54 33s60
+X 14 globals.ads
+5K9*Globals 19e12 17|2w6 23r41 18|2w6 27r44 32r87
+12a4*regexPattern{string} 18|32r95
+13a4*defaultDate{string} 17|23r49
+15K12*params 17e14 18|27r52
+16a7*date{string} 18|27r59
+X 15 gnat.ads
+34K9*GNAT 37e9 18|4r6 32r19 32r67
+X 16 g-regexp.ads
+70K14*Regexp=70:36 18|4w11 32r24 32r72
+X 17 inputs.ads
+5K9*Inputs 20E9 26l5 26e11 18|7b14 52l5 52t11
+7R9*Input 8r30 20c9 24e17 18|12r18
+8P9*Input_Type(7R9) 11r27 12r26 15r33 16r33 18|10r27 16r26 42r33 47r33
+11V13*create{8P9} 18|10b13 13l8 13t14
+12U14*parse 12>20 18|16b14 39l8 39t13
+12p20 This{8P9} 18|16b20 20r7 25r18 30r21 33r19
+15V13*getParamCount{integer} 15>27 18|42b13 45l8 45t21
+15p27 This{8P9} 18|42b27 44r14
+16V13*getDateString{string} 16>27 18|47b13 50l8 50t21
+16p27 This{8P9} 18|47b27 49r14
+22i10*param_count{integer} 18|20m16 25r27 30r30 44r23
+23a10*date_string{string} 18|33m28 49r23
+X 18 inputs.adb
+17i7 I{positive} 23m7 25r13 27r39 28r18 37m10 37r15
+17i10 J{positive} 28m13 30r16 32r63 33r69
+24l7 While_Loop 38l16 38e26
+X 25 s-regexp.ads
+105V13*Compile{99R9} 18|32s79
+116V13*Match{boolean} 18|32s31
 

@@ -7,7 +7,7 @@ with Ada.Exceptions;
 
 package body ada_main is
 
-   E134 : Short_Integer; pragma Import (Ada, E134, "system__os_lib_E");
+   E138 : Short_Integer; pragma Import (Ada, E138, "system__os_lib_E");
    E011 : Short_Integer; pragma Import (Ada, E011, "system__soft_links_E");
    E021 : Short_Integer; pragma Import (Ada, E021, "system__exception_table_E");
    E108 : Short_Integer; pragma Import (Ada, E108, "ada__io_exceptions_E");
@@ -18,8 +18,9 @@ package body ada_main is
    E107 : Short_Integer; pragma Import (Ada, E107, "ada__streams_E");
    E061 : Short_Integer; pragma Import (Ada, E061, "interfaces__c_E");
    E023 : Short_Integer; pragma Import (Ada, E023, "system__exceptions_E");
-   E137 : Short_Integer; pragma Import (Ada, E137, "system__file_control_block_E");
-   E132 : Short_Integer; pragma Import (Ada, E132, "system__file_io_E");
+   E141 : Short_Integer; pragma Import (Ada, E141, "system__file_control_block_E");
+   E132 : Short_Integer; pragma Import (Ada, E132, "ada__streams__stream_io_E");
+   E136 : Short_Integer; pragma Import (Ada, E136, "system__file_io_E");
    E110 : Short_Integer; pragma Import (Ada, E110, "system__finalization_root_E");
    E105 : Short_Integer; pragma Import (Ada, E105, "ada__finalization_E");
    E112 : Short_Integer; pragma Import (Ada, E112, "system__storage_pools_E");
@@ -29,10 +30,11 @@ package body ada_main is
    E039 : Short_Integer; pragma Import (Ada, E039, "system__dwarf_lines_E");
    E015 : Short_Integer; pragma Import (Ada, E015, "system__secondary_stack_E");
    E084 : Short_Integer; pragma Import (Ada, E084, "ada__strings__unbounded_E");
+   E128 : Short_Integer; pragma Import (Ada, E128, "system__regexp_E");
    E034 : Short_Integer; pragma Import (Ada, E034, "system__traceback__symbolic_E");
-   E130 : Short_Integer; pragma Import (Ada, E130, "ada__text_io_E");
+   E147 : Short_Integer; pragma Import (Ada, E147, "ada__text_io_E");
    E122 : Short_Integer; pragma Import (Ada, E122, "inputs_E");
-   E126 : Short_Integer; pragma Import (Ada, E126, "outputs_E");
+   E143 : Short_Integer; pragma Import (Ada, E143, "outputs_E");
 
    Local_Priority_Specific_Dispatching : constant String := "";
    Local_Interrupt_States : constant String := "";
@@ -41,7 +43,7 @@ package body ada_main is
 
    procedure finalize_library is
    begin
-      E126 := E126 - 1;
+      E143 := E143 - 1;
       declare
          procedure F1;
          pragma Import (Ada, F1, "outputs__finalize_spec");
@@ -55,40 +57,54 @@ package body ada_main is
       begin
          F2;
       end;
-      E130 := E130 - 1;
+      E147 := E147 - 1;
       declare
          procedure F3;
          pragma Import (Ada, F3, "ada__text_io__finalize_spec");
       begin
          F3;
       end;
-      E084 := E084 - 1;
+      E128 := E128 - 1;
       declare
          procedure F4;
-         pragma Import (Ada, F4, "ada__strings__unbounded__finalize_spec");
+         pragma Import (Ada, F4, "system__regexp__finalize_spec");
       begin
          F4;
       end;
+      E084 := E084 - 1;
       declare
          procedure F5;
-         pragma Import (Ada, F5, "system__file_io__finalize_body");
+         pragma Import (Ada, F5, "ada__strings__unbounded__finalize_spec");
       begin
-         E132 := E132 - 1;
          F5;
+      end;
+      declare
+         procedure F6;
+         pragma Import (Ada, F6, "system__file_io__finalize_body");
+      begin
+         E136 := E136 - 1;
+         F6;
       end;
       E102 := E102 - 1;
       E100 := E100 - 1;
       declare
-         procedure F6;
-         pragma Import (Ada, F6, "system__storage_pools__subpools__finalize_spec");
-      begin
-         F6;
-      end;
-      declare
          procedure F7;
-         pragma Import (Ada, F7, "system__finalization_masters__finalize_spec");
+         pragma Import (Ada, F7, "system__storage_pools__subpools__finalize_spec");
       begin
          F7;
+      end;
+      declare
+         procedure F8;
+         pragma Import (Ada, F8, "system__finalization_masters__finalize_spec");
+      begin
+         F8;
+      end;
+      E132 := E132 - 1;
+      declare
+         procedure F9;
+         pragma Import (Ada, F9, "ada__streams__stream_io__finalize_spec");
+      begin
+         F9;
       end;
       declare
          procedure Reraise_Library_Exception_If_Any;
@@ -198,7 +214,9 @@ package body ada_main is
       System.Exceptions'Elab_Spec;
       E023 := E023 + 1;
       System.File_Control_Block'Elab_Spec;
-      E137 := E137 + 1;
+      E141 := E141 + 1;
+      Ada.Streams.Stream_Io'Elab_Spec;
+      E132 := E132 + 1;
       System.Finalization_Root'Elab_Spec;
       E110 := E110 + 1;
       Ada.Finalization'Elab_Spec;
@@ -213,7 +231,7 @@ package body ada_main is
       System.Finalization_Masters'Elab_Body;
       E102 := E102 + 1;
       System.File_Io'Elab_Body;
-      E132 := E132 + 1;
+      E136 := E136 + 1;
       E061 := E061 + 1;
       Ada.Tags'Elab_Body;
       E088 := E088 + 1;
@@ -221,22 +239,24 @@ package body ada_main is
       System.Soft_Links'Elab_Body;
       E011 := E011 + 1;
       System.Os_Lib'Elab_Body;
-      E134 := E134 + 1;
+      E138 := E138 + 1;
       System.Secondary_Stack'Elab_Body;
       E015 := E015 + 1;
       E039 := E039 + 1;
       E059 := E059 + 1;
       Ada.Strings.Unbounded'Elab_Spec;
       E084 := E084 + 1;
+      System.Regexp'Elab_Spec;
+      E128 := E128 + 1;
       System.Traceback.Symbolic'Elab_Body;
       E034 := E034 + 1;
       Ada.Text_Io'Elab_Spec;
       Ada.Text_Io'Elab_Body;
-      E130 := E130 + 1;
+      E147 := E147 + 1;
       Inputs'Elab_Spec;
       E122 := E122 + 1;
       Outputs'Elab_Spec;
-      E126 := E126 + 1;
+      E143 := E143 + 1;
    end adainit;
 
    procedure Ada_Main_Program;
@@ -272,12 +292,12 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   M:\z_Agil\JpegByDate\bin\globals.o
-   --   M:\z_Agil\JpegByDate\bin\inputs.o
-   --   M:\z_Agil\JpegByDate\bin\outputs.o
-   --   M:\z_Agil\JpegByDate\bin\main.o
-   --   -LM:\z_Agil\JpegByDate\bin\
-   --   -LM:\z_Agil\JpegByDate\bin\
+   --   C:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\globals.o
+   --   C:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\inputs.o
+   --   C:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\outputs.o
+   --   C:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\main.o
+   --   -LC:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\
+   --   -LC:\Users\von_teichman.m-tit14\Documents\GitHub\NEW\JpegByDate\bin\
    --   -LC:/gnat/2016/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
    --   -static
    --   -lgnat

@@ -12,8 +12,9 @@ RV NO_STANDARD_STORAGE_POOLS
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
+RV SPARK_05
 
-U globals%s		globals.ads		ce42f099 NE OO PK
+U globals%s		globals.ads		9c33741b NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
@@ -36,7 +37,7 @@ D a-strmap.ads		20160516092930 e8bb714a ada.strings.maps%s
 D a-strunb.ads		20160516092928 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
-D globals.ads		20161026115420 f1d3245c globals%s
+D globals.ads		20161026144220 a3a2a0de globals%s
 D system.ads		20160516092930 2da59038 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-exctab.ads		20160516092930 54135002 system.exception_table%s
@@ -63,9 +64,13 @@ X 9 a-strunb.ads
 76K21*Unbounded 489e26 12|2w18 9r60
 79R9*Unbounded_String<5|43R9> 473e14 12|9r70
 X 12 globals.ads
-5K9*Globals 11l5 11e12
+5K9*Globals 19l5 19e12
 8A9*NumArr(integer)<integer>
 9A9*StrArr(9|79R9)<integer>
+12a4*regexPattern{string}
+13a4*defaultDate{string}
+15K12*params 17l8 17e14
+16a7*date{string}
 X 13 system.ads
 67M9*Address
 X 18 s-memory.ads

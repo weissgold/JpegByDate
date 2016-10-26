@@ -13,12 +13,14 @@ package Inputs is
 
    -- Getter Funktionen
    function getParamCount(This: Input_Type) return Integer;
+   function getDateString(This: Input_Type) return String;
 
 private
    -- Objektvariablen
    type Input is tagged
       record
          param_count : Integer;
+         date_string : String(1..10) := Globals.defaultDate;
       end record;
 
 end Inputs;

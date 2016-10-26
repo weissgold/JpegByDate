@@ -1,25 +1,16 @@
 -- Verwendete Packages
 with Globals;
+with Inputs;
 with Outputs;
 with Ada.Strings.Unbounded;
 
 -- Hauptfunktion
 procedure Main is
-   outs : Outputs.Output_Type := new Outputs.Output;
+   input_parser : Inputs.Input_Type := Inputs.create;
 begin
-   -- Zahl anzeigen
-   Outputs.displayN(outs, 127);
-
-   -- Zahlen anzeigen
-   declare
-      Arr : Globals.NumArr(1..9);
-   begin
-      Array_Loop:
-      for I in Arr'Range loop
-         Arr(I) := I;
-      end loop Array_Loop;
-      Outputs.displayA(outs, Arr);
-   end;
+   -- Eingabe verarbeiten
+   Inputs.parse(input_parser);
+   Outputs.display(Integer'Image(Inputs.getParamCount(input_parser)));
 
    -- Strings anzeigen
    declare

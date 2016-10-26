@@ -7,12 +7,10 @@ package Outputs is
    type Output is tagged null record;
    type Output_Type is access Output;
 
-   -- Anzeigefunktion für Zahl
-   procedure displayN(This: Output_Type; Number: Integer);
-   -- Anzeigefunktion für Zahlenarray
-   procedure displayA(This: Output_Type; Arr: Globals.NumArr);
+   -- Anzeigefunktion für String
+   procedure display(str: String);
+
    -- Anzeigefunktion für Stringarray
    procedure display(strings: Globals.StrArr);
-
 
 end Outputs;

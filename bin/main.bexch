@@ -2,9 +2,10 @@
 b__main.o
 [PROJECT FILES]
 M:\z_Agil\JpegByDate\src\jpegbydate.gpr
-20161026123422
+20161026131940
 [BOUND OBJECT FILES]
 M:\z_Agil\JpegByDate\bin\globals.o
+M:\z_Agil\JpegByDate\bin\inputs.o
 M:\z_Agil\JpegByDate\bin\outputs.o
 M:\z_Agil\JpegByDate\bin\main.o
 [GENERATED SOURCE FILES]

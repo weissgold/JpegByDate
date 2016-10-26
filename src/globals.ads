@@ -7,6 +7,7 @@ package Globals is
    -- Array Definition
    type NumArr is array (Positive range <>) of Integer;
    type StrArr is array (Positive range <>) of Ada.Strings.Unbounded.Unbounded_String;
+   type StrArr_Type is access StrArr;
 
    -- Konstanten Definition
    regexPattern : constant String := "....-..-.."; -- ACHTUNG: Matched auch nicht Zahlen!

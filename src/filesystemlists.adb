@@ -2,11 +2,8 @@
 with Globals;
 with Ada.Directories;
 with Ada.Containers.Vectors;
-
 ---
-
-with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded; -- Ohne use funktioniert die Vector-Erstellung nicht!
 
 -- Package für das Auflisten von Dateien
 package body Filesystemlists is
@@ -26,11 +23,13 @@ package body Filesystemlists is
                                                          Ada.Directories.Special_File  => False,
                                                          Ada.Directories.Directory     => False);
 
---      package FileListVectors is new Ada.Containers.Vectors(Natural, Integer);
---      use FileListVectors;
-
---      FileListVector : FileListVectors.Vector;
---      FileListCursor : FileListVectors.Cursor;
+      package String_Vectors is new Ada.Containers.Vectors(Element_Type => Unbounded_String, Index_Type => Natural);
+      subtype String_Vector is String_Vectors.Vector;
+      subtype String_Cursor is String_Vectors.Cursor;
+      FileListVector : String_Vector;
+      FileListCursor : String_Cursor;
+      str : Unbounded_String;
+      I : Integer := 1;
 
    begin
       Ada.Directories.Start_Search (Search    => FilesystemSearch,
@@ -38,28 +37,30 @@ package body Filesystemlists is
                                     Pattern   => "",
                                     Filter    => Filter);
 
+      -- Directory durchsuchen
       while Ada.Directories.More_Entries (Search => FilesystemSearch) loop
          Ada.Directories.Get_Next_Entry (Search => FilesystemSearch, Directory_Entry => EntryItem);
+         str := To_Unbounded_String(Ada.Directories.Full_Name(EntryItem));
 
          -- Filtern der Liste mit einer Regular-Expression
 
-         Put_Line(Ada.Directories.Full_Name(EntryItem));
-
---         FileListVectors.Append(FileListVector, Ada.Directories.Full_Name(EntryItem));
+         FileListVector.Append(New_Item => str);
       end loop;
-
       Ada.Directories.End_Search (Search => FilesystemSearch);
 
---      FileListCursor := FileListVectors.First(FileListVector);
---      while FileListVectors.Has_Element(FileListCursor) loop
---         Put_Line(FileListVectors.Element(FileListCursor));
---         FileListVectors.Next(FileListCursor);
---      end loop;
+      -- Vector zu Array lopieren
+      This.all.list := new Globals.StrArr(1..Integer(FileListVector.Length));
+      FileListCursor := FileListVector.First;
+      while String_Vectors.Has_Element(FileListCursor) loop
+         This.all.list(I) := String_Vectors.Element(FileListCursor);
+         I := I + 1;
+         String_Vectors.Next(FileListCursor);
+      end loop;
 
    end listFiles;
 
    -- Getter Funktionen
-   function getList(This: Filesystemlist_Type) return globals.StrArr is
+   function getList(This: Filesystemlist_Type) return globals.StrArr_Type is
    begin
       return This.all.list;
    end getList;

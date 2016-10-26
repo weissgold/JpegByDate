@@ -14,13 +14,13 @@ package Filesystemlists is
    procedure listFiles(This: Filesystemlist_Type; path: String);
 
    -- Getterfunktionen
-   function getList(This: Filesystemlist_Type) return Globals.StrArr;
+   function getList(This: Filesystemlist_Type) return Globals.StrArr_Type;
 
 private
    -- Objektvariablen
    type Filesystemlist is tagged
       record
-         list : Globals.StrArr(1..1);
+         list : Globals.StrArr_Type := null;
       end record;
 
 end Filesystemlists;

@@ -22,5 +22,13 @@ package body Outputs is
          Put_Line(Ada.Strings.Unbounded.To_String(strings(I)));
       end loop Array_Loop;
    end display;
+   procedure display(strings: Globals.StrArr_Type) is
+   begin
+      Array_Loop:
+      for I in strings'Range loop
+         -- Unbounded konvertieren um Anzeige zu ermöglichen
+         Put_Line(Ada.Strings.Unbounded.To_String(strings(I)));
+      end loop Array_Loop;
+   end display;
 
 end Outputs;

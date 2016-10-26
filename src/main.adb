@@ -3,7 +3,6 @@ with Globals;
 with Inputs;
 with Filesystemlists;
 with Outputs;
-with Ada.Strings.Unbounded;
 
 -- Hauptfunktion
 procedure Main is
@@ -15,16 +14,8 @@ begin
    Outputs.display(Integer'Image(Inputs.getParamCount(input_parser)));
    Outputs.display(Inputs.getDateString(input_parser));
 
-   Filesystemlists.listFiles(files_parser, ".");
+   -- Dateien auflisten und anzeigen
+   Filesystemlists.listFiles(files_parser, "."); -- "." = aktuelles Verzeichnis
+   Outputs.display(Filesystemlists.getList(files_parser));
 
-   -- Strings anzeigen
-   declare
-      Arr : Globals.StrArr(1..4);
-   begin
-      Arr(1) := Ada.Strings.Unbounded.To_Unbounded_String("Dies");
-      Arr(2) := Ada.Strings.Unbounded.To_Unbounded_String("ist");
-      Arr(3) := Ada.Strings.Unbounded.To_Unbounded_String("ein");
-      Arr(4) := Ada.Strings.Unbounded.To_Unbounded_String("Test");
-      Outputs.display(Arr);
-   end;
 end Main;

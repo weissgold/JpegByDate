@@ -12,5 +12,6 @@ package Outputs is
 
    -- Anzeigefunktion für Stringarray
    procedure display(strings: Globals.StrArr);
+   procedure display(strings: Globals.StrArr_Type);
 
 end Outputs;

@@ -58,4 +58,4 @@ $RECYCLE.BIN/
 # Ada-Binaries
 
 bin/*
-!bin/main.exe
+!bin/JpegByDate.exe

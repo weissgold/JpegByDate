@@ -1,20 +1,22 @@
-[GENERATED OBJECT FILE]
-b__main.o
+[MAPPING FILE]
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\GNAT-TEMP-000004.TMP
+[TOOLCHAIN VERSION]
+ada
+GNAT 2016
+[MAIN BASE NAME]
+main
+[COMPILER PATH]
+c:\programme\ada\gnat\bin\gcc.exe
+[COMPILER LEADING SWITCHES]
+-c
+-x
+ada
+-gnatA
+[MAIN DEPENDENCY FILE]
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\bin\main.ali
+[DEPENDENCY FILES]
+[BINDING OPTIONS]
+gnatbind_prefix=
 [PROJECT FILES]
-C:\Users\Lukas\z_Agil\JpegByDate\src\jpegbydate.gpr
-20161025191020
-[BOUND OBJECT FILES]
-C:\Users\Lukas\z_Agil\JpegByDate\bin\output.o
-C:\Users\Lukas\z_Agil\JpegByDate\bin\main.o
-[GENERATED SOURCE FILES]
-b__main.ads
-b__main.adb
-b__main.ali
-[RESULTING OPTIONS]
--LC:\Users\Lukas\z_Agil\JpegByDate\bin\
--LC:\Users\Lukas\z_Agil\JpegByDate\bin\
--LL:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
--static
--static-libgcc
-L:/programme/ada/gnat/lib/gcc/i686-pc-mingw32/4.9.4/adalib/libgnat.a
--Wl,--stack=0x2000000
+C:\Dokumente und Einstellungen\Lukas\Desktop\z_Agil\JpegByDate\src\jpegbydate.gpr
+20161026113644

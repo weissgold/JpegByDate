@@ -1,6 +1,8 @@
 -- Verwendete Packages
+with Globals;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+with Ada.Strings.Unbounded;
 
 -- Package für Ausgabemodul
 package body Output is
@@ -13,7 +15,7 @@ package body Output is
    end displayN;
 
    -- Anzeigefunktion für Zahlenarray
-   procedure displayA(Arr: NumArr) is
+   procedure displayA(Arr: Globals.NumArr) is
    begin
       Put_Line("Numbers:");
       Array_Loop:
@@ -24,7 +26,7 @@ package body Output is
    end displayA;
 
    -- Anzeigefunktion für Stringarray
-   procedure display(strings: StrArr) is
+   procedure display(strings: Globals.StrArr) is
    begin
       Array_Loop:
       for I in strings'Range loop

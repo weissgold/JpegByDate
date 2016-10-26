@@ -1,4 +1,5 @@
 -- Verwendete Packages
+with Globals;
 with Output; use Output;
 with Ada.Strings.Unbounded;
 
@@ -10,7 +11,7 @@ begin
 
    -- Zahlen anzeigen
    declare
-      Arr : NumArr(1..9);
+      Arr : Globals.NumArr(1..9);
    begin
       Array_Loop:
       for I in Arr'Range loop
@@ -21,7 +22,7 @@ begin
 
    -- Strings anzeigen
    declare
-      Arr : StrArr(1..4);
+      Arr : Globals.StrArr(1..4);
    begin
       Arr(1) := Ada.Strings.Unbounded.To_Unbounded_String("Dies");
       Arr(2) := Ada.Strings.Unbounded.To_Unbounded_String("ist");

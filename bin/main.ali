@@ -16,12 +16,13 @@ RV NO_DEFAULT_INITIALIZATION
 RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 
-U main%b		main.adb		ddaa8c76 NE OO SU
+U main%b		main.adb		2b8579e3 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
 W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
+W globals%s		globals.ads		globals.ali
 W output%s		output.adb		output.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
@@ -38,8 +39,9 @@ D a-strmap.ads		20160516092930 e8bb714a ada.strings.maps%s
 D a-strunb.ads		20160516092928 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
-D main.adb		20161025192606 0965f1a6 main%b
-D output.ads		20161025192606 eb5ea915 output%s
+D globals.ads		20161026114220 f1d3245c globals%s
+D main.adb		20161026114310 932a900b main%b
+D output.ads		20161026114220 76ed1971 output%s
 D system.ads		20160516092930 2da59038 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-exctab.ads		20160516092930 54135002 system.exception_table%s
@@ -59,31 +61,33 @@ D s-stratt.ads		20160516092926 aedef97e system.stream_attributes%s
 D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 X 1 ada.ads
-16K9*Ada 19e8 12|3r6 26r17 27r17 28r17 29r17
+16K9*Ada 19e8 13|4r6 27r17 28r17 29r17 30r17
 X 7 a-string.ads
-16K13*Strings 35e16 12|3r10 26r21 27r21 28r21 29r21
+16K13*Strings 35e16 13|4r10 27r21 28r21 29r21 30r21
 X 9 a-strunb.ads
-76K21*Unbounded 489e26 12|3w18 26r29 27r29 28r29 29r29
-94V13*To_Unbounded_String{79R9} 12|26s39 27s39 28s39 29s39
-X 12 main.adb
-6U11*Main 6b11 32l5 32t9
-13a7 Arr{13|8A9} 16r16 17m10 19r23
-15l7 Array_Loop 18l16 18e26
-16i11 I{integer} 17r14 17r20
-24a7 Arr{13|9A9} 26m7 27m7 28m7 29m7 30r22
-X 13 output.ads
-5K9*Output 12|2w6 2r18 9r4 19r7 30r7 13|20e11
-8A9*NumArr(integer)<integer> 12|13r13
-9A9*StrArr(9|79R9)<integer> 12|24r13
-12U14*displayN 12|9s11
-15U14*displayA 12|19s14
-18U14*display 12|30s14
-X 14 system.ads
+76K21*Unbounded 489e26 13|4w18 27r29 28r29 29r29 30r29
+94V13*To_Unbounded_String{79R9} 13|27s39 28s39 29s39 30s39
+X 12 globals.ads
+5K9*Globals 11e12 13|2w6 14r13 25r13
+8A9*NumArr(integer)<integer> 13|14r21
+9A9*StrArr(9|79R9)<integer> 13|25r21
+X 13 main.adb
+7U11*Main 7b11 33l5 33t9
+14a7 Arr{12|8A9} 17r16 18m10 20r23
+16l7 Array_Loop 19l16 19e26
+17i11 I{integer} 18r14 18r20
+25a7 Arr{12|9A9} 27m7 28m7 29m7 30m7 31r22
+X 14 output.ads
+5K9*Output 13|3w6 3r18 10r4 20r7 31r7 14|15e11
+7U14*displayN 13|10s11
+10U14*displayA 13|20s14
+13U14*display 13|31s14
+X 15 system.ads
 67M9*Address
-X 19 s-memory.ads
-53V13*Alloc{14|67M9} 103i<c,__gnat_malloc>22
+X 20 s-memory.ads
+53V13*Alloc{15|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{14|67M9} 105i<c,__gnat_realloc>22
-X 25 s-stalib.adb
+76V13*Realloc{15|67M9} 105i<c,__gnat_realloc>22
+X 26 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
 

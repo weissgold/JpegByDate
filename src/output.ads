@@ -1,20 +1,15 @@
 -- Verwendete Packages
-with Ada.Strings.Unbounded;
+with Globals;
 
 -- Package für Ausgabemodul
 package Output is
-
-   -- Array Definition
-   type NumArr is array (Positive range <>) of Integer;
-   type StrArr is array (Positive range <>) of Ada.Strings.Unbounded.Unbounded_String;
-
    -- Anzeigefunktion für Zahl
    procedure displayN(Number: Integer);
 
    -- Anzeigefunktion für Zahlenarray
-   procedure displayA(Arr: NumArr);
+   procedure displayA(Arr: Globals.NumArr);
 
    -- Anzeigefunktion für Stringarray
-   procedure display(strings: StrArr);
+   procedure display(strings: Globals.StrArr);
 
 end Output;

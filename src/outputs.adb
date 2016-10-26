@@ -5,23 +5,22 @@ with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Ada.Strings.Unbounded;
 
 -- Package für Ausgabemodul
-package body Output is
+package body Outputs is
    -- Anzeigefunktion für Zahl
-   procedure displayN(Number: Integer) is
+   procedure displayN(This: Output_Type; Number: Integer) is
    begin
-      Put_Line("Number:");
+      Put("Number: ");
       Put(Number);
       New_Line(1);
    end displayN;
 
    -- Anzeigefunktion für Zahlenarray
-   procedure displayA(Arr: Globals.NumArr) is
+   procedure displayA(This: Output_Type; Arr: Globals.NumArr) is
    begin
       Put_Line("Numbers:");
       Array_Loop:
       for I in Arr'Range loop
-         Put(Arr(I));
-      New_Line(1);
+         displayN(This, Arr(I));
       end loop Array_Loop;
    end displayA;
 
@@ -35,4 +34,4 @@ package body Output is
       end loop Array_Loop;
    end display;
 
-end Output;
+end Outputs;

@@ -5,13 +5,17 @@ A -march=pentium4
 P SS ZX
 
 RN
+RV NO_DISPATCHING_CALLS
 RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
 RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U output%b		output.adb		cadb1b50 NE OO PK
+U outputs%b		outputs.adb		dc7f2af8 NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.strings%s		a-string.ads		a-string.ali
@@ -20,8 +24,14 @@ W ada.text_io%s		a-textio.adb		a-textio.ali
 W globals%s		globals.ads		globals.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 
-U output%s		output.ads		873e3d2d EE NE OO PK
+U outputs%s		outputs.ads		6edc5e90 EE OO PF PK
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.streams%s		a-stream.adb		a-stream.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
 W globals%s		globals.ads		globals.ali
+W system%s		system.ads		system.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
 
 D ada.ads		20160516092928 3ffc8e18 ada%s
 D a-charac.ads		20160516092930 2d3ec45b ada.characters%s
@@ -38,11 +48,11 @@ D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
 D a-tiinio.ads		20160516092928 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
-D globals.ads		20161026114220 f1d3245c globals%s
+D globals.ads		20161026115420 f1d3245c globals%s
 D interfac.ads		20160516092928 5ab55268 interfaces%s
 D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
-D output.ads		20161026114220 76ed1971 output%s
-D output.adb		20161026114410 bc528ec8 output%b
+D outputs.ads		20161026123718 9f0f7acc outputs%s
+D outputs.adb		20161026123718 4314dcdd outputs%b
 D system.ads		20160516092930 2da59038 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
@@ -56,6 +66,7 @@ D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
 D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
 D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
 D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20160516092930 ed88f8fb system.storage_elements%b
 D s-stopoo.ads		20160516092928 b16154c2 system.storage_pools%s
 D s-stposu.ads		20160516092926 97a6219c system.storage_pools.subpools%s
 D s-stratt.ads		20160516092926 aedef97e system.stream_attributes%s
@@ -63,35 +74,40 @@ D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
 X 1 ada.ads
-16K9*Ada 19e8 20|3r6 3r23 4r6 4r31 5r6 34r19
+16K9*Ada 19e8 20|3r6 3r23 4r6 4r31 5r6 33r19
 X 6 a-inteio.ads
 18K13*Integer_Text_IO[14|46] 20|4w10 4r35
 X 9 a-string.ads
-16K13*Strings 35e16 20|5r10 34r23
+16K13*Strings 35e16 20|5r10 33r23
 X 11 a-strunb.ads
-76K21*Unbounded 489e26 20|5w18 34r31
-100V13*To_String{string} 20|34s41
+76K21*Unbounded 489e26 20|5w18 33r31
+100V13*To_String{string} 20|33s41
 X 13 a-textio.ads
 49K13*Text_IO 471e16 20|3w10 3r27
-166U14*New_Line 20|14s7 24s7
-263U14*Put_Line 20|12s7 20s7 34s10
+166U14*New_Line 20|14s7
+242U14*Put 20|12s7
+263U14*Put_Line 20|20s7 33s10
 X 14 a-tiinio.ads
-66U14*Put 20|13s7[6|18] 23s10[6|18]
+66U14*Put 20|13s7[6|18]
 X 16 globals.ads
-5K9*Globals 11e12 19|2w6 10r28 13r31 20|2w6 18r28 29r31
-8A9*NumArr(integer)<integer> 19|10r36 20|18r36
-9A9*StrArr(11|79R9)<integer> 19|13r39 20|29r39
-X 19 output.ads
-5K9*Output 15l5 15e11 20|8b14 38l5 38t11
-7U14*displayN 7>23 20|10b14 15l8 15t16
-7i23 Number{integer} 20|10b23 13r11
-10U14*displayA 10>23 20|18b14 26l8 26t16
-10a23 Arr{16|8A9} 20|18b23 22r16 23r14
-13U14*display 13>22 20|29b14 36l8 36t15
-13a22 strings{16|9A9} 20|29b22 32r16 34r51
-X 20 output.adb
-21l7 Array_Loop 25l16 25e26
-22i11 I{integer} 23r18
-31l7 Array_Loop 35l16 35e26
-32i11 I{integer} 34r59
+5K9*Globals 11e12 19|2w6 13r47 15r31 20|2w6 18r47 28r31
+8A9*NumArr(integer)<integer> 19|13r55 20|18r55
+9A9*StrArr(11|79R9)<integer> 19|15r39 20|28r39
+X 19 outputs.ads
+5K9*Outputs 18l5 18e12 20|8b14 37l5 37t12
+7R9*Output 7e37 8r31
+8P9*Output_Type(7R9) 11r29 13r29 20|10r29 18r29
+11U14*displayN 11>23 11>42 20|10b14 15l8 15t16 23s10
+11p23 This{8P9} 20|10b23
+11i42 Number{integer} 20|10b42 13r11
+13U14*displayA 13>23 13>42 20|18b14 25l8 25t16
+13p23 This{8P9} 20|18b23 23r19
+13a42 Arr{16|8A9} 20|18b42 22r16 23r25
+15U14*display 15>22 20|28b14 35l8 35t15
+15a22 strings{16|9A9} 20|28b22 31r16 33r51
+X 20 outputs.adb
+21l7 Array_Loop 24l16 24e26
+22i11 I{integer} 23r29
+30l7 Array_Loop 34l16 34e26
+31i11 I{integer} 33r59
 

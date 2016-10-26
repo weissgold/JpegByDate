@@ -1,35 +1,29 @@
 V "GNAT Lib v2016"
-M P W=b
 A -gnatA
 A -mtune=generic
 A -march=pentium4
 P SS ZX
 
 RN
-RV NO_ALLOCATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTION_PROPAGATION
 RV NO_EXCEPTIONS
-RV NO_LOCAL_ALLOCATORS
-RV NO_NESTED_FINALIZATION
-RV NO_SECONDARY_STACK
-RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
 RV NO_STANDARD_STORAGE_POOLS
-RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
-RV SPARK_05
+RV NO_IMPLICIT_LOOPS
 
-U main%b		main.adb		c38ebc17 NE OO SU
+U globals%s		globals.ads		ce42f099 NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
 W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
-W globals%s		globals.ads		globals.ali
-W outputs%s		outputs.adb		outputs.ali
-W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system%s		system.ads		system.ali
+W system.finalization_masters%s  s-finmas.adb	s-finmas.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
 W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
 
 D ada.ads		20160516092928 3ffc8e18 ada%s
 D a-charac.ads		20160516092930 2d3ec45b ada.characters%s
@@ -43,8 +37,6 @@ D a-strunb.ads		20160516092928 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
 D globals.ads		20161026115420 f1d3245c globals%s
-D main.adb		20161026123424 92c33642 main%b
-D outputs.ads		20161026123718 9f0f7acc outputs%s
 D system.ads		20160516092930 2da59038 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-exctab.ads		20160516092930 54135002 system.exception_table%s
@@ -64,36 +56,22 @@ D s-stratt.ads		20160516092926 aedef97e system.stream_attributes%s
 D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 X 1 ada.ads
-16K9*Ada 19e8 13|4r6 28r17 29r17 30r17 31r17
+16K9*Ada 19e8 12|2r6 9r48
 X 7 a-string.ads
-16K13*Strings 35e16 13|4r10 28r21 29r21 30r21 31r21
+16K13*Strings 35e16 12|2r10 9r52
 X 9 a-strunb.ads
-76K21*Unbounded 489e26 13|4w18 28r29 29r29 30r29 31r29
-94V13*To_Unbounded_String{79R9} 13|28s39 29s39 30s39 31s39
+76K21*Unbounded 489e26 12|2w18 9r60
+79R9*Unbounded_String<5|43R9> 473e14 12|9r70
 X 12 globals.ads
-5K9*Globals 11e12 13|2w6 15r13 26r13
-8A9*NumArr(integer)<integer> 13|15r21
-9A9*StrArr(9|79R9)<integer> 13|26r21
-X 13 main.adb
-7U11*Main 7b11 34l5 34t9
-8p4 outs{14|8P9} 11r21 21r24
-15a7 Arr{12|8A9} 18r16 19m10 21r30
-17l7 Array_Loop 20l16 20e26
-18i11 I{integer} 19r14 19r20
-26a7 Arr{12|9A9} 28m7 29m7 30m7 31m7 32r23
-X 14 outputs.ads
-5K9*Outputs 13|3w6 8r11 8r38 11r4 21r7 32r7 14|18e12
-7R9*Output 13|8r46 14|7e37
-8P9*Output_Type(7R9) 13|8r19
-11U14*displayN 13|11s12
-13U14*displayA 13|21s15
-15U14*display 13|32s15
-X 15 system.ads
+5K9*Globals 11l5 11e12
+8A9*NumArr(integer)<integer>
+9A9*StrArr(9|79R9)<integer>
+X 13 system.ads
 67M9*Address
-X 20 s-memory.ads
-53V13*Alloc{15|67M9} 103i<c,__gnat_malloc>22
+X 18 s-memory.ads
+53V13*Alloc{13|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{15|67M9} 105i<c,__gnat_realloc>22
-X 26 s-stalib.adb
+76V13*Realloc{13|67M9} 105i<c,__gnat_realloc>22
+X 24 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
 

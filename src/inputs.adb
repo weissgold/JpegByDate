@@ -29,7 +29,7 @@ package body Inputs is
             -- Prüfen ob nächster Parameter existiert
             if J <= This.all.param_count then
                -- Regulärer Ausdruck für ISO Date Pattern Matching
-               if GNAT.Regexp.Match(Ada.Command_Line.Argument(J), GNAT.Regexp.Compile(Globals.regexPattern)) then
+               if GNAT.Regexp.Match(Ada.Command_Line.Argument(J), GNAT.Regexp.Compile(Globals.regexPatternDate)) then
                   This.all.date_string := Ada.Command_Line.Argument(J);
                end if;
             end if;

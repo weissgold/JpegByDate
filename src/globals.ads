@@ -10,7 +10,8 @@ package Globals is
    type StrArr_Type is access StrArr;
 
    -- Konstanten Definition
-   regexPattern : constant String := "....-..-.."; -- ACHTUNG: Matched auch nicht Zahlen!
+   regexPatternDate : constant String := "....-..-.."; -- ACHTUNG: Matched auch nicht Zahlen!
+   regexPatternFiletype : constant String := ".*\.(jpg|jpeg|jpe|jfif)$";
    defaultDate : constant String := "yyyy-mm-dd";
 
    package params is

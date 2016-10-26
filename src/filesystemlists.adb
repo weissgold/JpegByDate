@@ -2,8 +2,9 @@
 with Globals;
 with Ada.Directories;
 with Ada.Containers.Vectors;
----
+with GNAT.Regpat;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded; -- Ohne use funktioniert die Vector-Erstellung nicht!
+
 
 -- Package für das Auflisten von Dateien
 package body Filesystemlists is
@@ -22,16 +23,19 @@ package body Filesystemlists is
       Filter : constant Ada.Directories.Filter_Type := ( Ada.Directories.Ordinary_File => True,
                                                          Ada.Directories.Special_File  => False,
                                                          Ada.Directories.Directory     => False);
-
+      -- Verzeichnisvektor vorbereiten
       package String_Vectors is new Ada.Containers.Vectors(Element_Type => Unbounded_String, Index_Type => Natural);
       subtype String_Vector is String_Vectors.Vector;
       subtype String_Cursor is String_Vectors.Cursor;
       FileListVector : String_Vector;
       FileListCursor : String_Cursor;
-      str : Unbounded_String;
+      -- temporaere Variablen
       I : Integer := 1;
+      -- Regex vorbereiten fuer Dateiendungen
+      compiledFiletypeRegex : constant GNAT.Regpat.Pattern_Matcher := GNAT.Regpat.Compile(Globals.regexPatternFiletype);
 
    begin
+      -- Verzeichnis durchsuchen
       Ada.Directories.Start_Search (Search    => FilesystemSearch,
                                     Directory => path,
                                     Pattern   => "",
@@ -40,15 +44,16 @@ package body Filesystemlists is
       -- Directory durchsuchen
       while Ada.Directories.More_Entries (Search => FilesystemSearch) loop
          Ada.Directories.Get_Next_Entry (Search => FilesystemSearch, Directory_Entry => EntryItem);
-         str := To_Unbounded_String(Ada.Directories.Full_Name(EntryItem));
 
          -- Filtern der Liste mit einer Regular-Expression
-
-         FileListVector.Append(New_Item => str);
+         if Boolean'(GNAT.Regpat.Match(compiledFiletypeRegex, Ada.Directories.Full_Name(EntryItem))) then
+            -- Wenn Dateiendung korrekt -> in Liste aufnehmen
+            FileListVector.Append(New_Item => To_Unbounded_String(Ada.Directories.Full_Name(EntryItem)));
+         end if;
       end loop;
       Ada.Directories.End_Search (Search => FilesystemSearch);
 
-      -- Vector zu Array lopieren
+      -- Vector zu Array kopieren
       This.all.list := new Globals.StrArr(1..Integer(FileListVector.Length));
       FileListCursor := FileListVector.First;
       while String_Vectors.Has_Element(FileListCursor) loop

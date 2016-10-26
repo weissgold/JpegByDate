@@ -2,7 +2,7 @@ project JpegByDate is
 
    for Object_Dir use "./../bin";
    for Main use ("main.adb");
-   for Source_Files use ("globals.ads", "inputs.adb", "inputs.ads", "main.adb", "outputs.adb", "outputs.ads");
+   for Source_Files use ("filesystemlists.adb", "filesystemlists.ads", "globals.ads", "inputs.adb", "inputs.ads", "main.adb", "outputs.adb", "outputs.ads");
 
    package Ide is
       for Vcs_Kind use "Git";

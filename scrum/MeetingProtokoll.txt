@@ -30,3 +30,13 @@ Sprint Planning Meeting (Sprint 1)
 
 2016-10-26
 "Daily" Scrum
+
+2016-10-27
+Sprint Review
+	- Fortschritt: Sprint 1 erfolgreich (Sehr hoher Aufwand ADA Programmierung)
+	- Problematik Grundstruktur von UML nicht Optimal -> Überarbeitung notwendig
+Sprint Planning Meeting (Sprint 2)
+	- Erstellung des Sprint Backlogs (siehe backlog_20161027.png)
+	- Planung von zukünftiger Dokumentation und automatisierter Tests
+	- Planung von Metriken zur Softwaremessung
+	- Hinzufügen von Aufwandseinschätzungen (Planungspoker)

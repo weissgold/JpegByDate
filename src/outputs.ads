@@ -1,17 +1,14 @@
 -- Verwendete Packages
-with Globals;
+--> NONE
 
--- Package für Ausgabemodul
+-- Ausgabe Interface
 package Outputs is
-   -- Typ anlegen
-   type Output is tagged null record;
-   type Output_Type is access Output;
 
-   -- Anzeigefunktion für String
-   procedure display(str: String);
+   -- Interfacedefinition
+   type Output is interface;
 
-   -- Anzeigefunktion für Stringarray
-   procedure display(strings: Globals.StrArr);
-   procedure display(strings: Globals.StrArr_Type);
+   -- Interfacefunktionen
+   function create return access Output is abstract;
+   procedure display(This: access Output; str: String) is abstract;
 
 end Outputs;

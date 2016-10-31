@@ -1,26 +1,15 @@
 -- Verwendete Packages
-with Globals;
+with Parameters;
 
--- Package für Ausgabemodul
+-- Eingabe Interface
 package Inputs is
-   -- Typ anlegen
-   type Input is tagged private;
-   type Input_Type is access Input;
 
-   -- Eingabewerte verarbeiten
-   function create return Input_Type;
-   procedure parse(This: Input_Type);
+   -- Interfacedefinition
+   type Input is interface;
 
-   -- Getter Funktionen
-   function getParamCount(This: Input_Type) return Integer;
-   function getDateString(This: Input_Type) return String;
-
-private
-   -- Objektvariablen
-   type Input is tagged
-      record
-         param_count : Integer;
-         date_string : String(1..10) := Globals.defaultDate;
-      end record;
+   -- Interfacefunktionen
+   function create return access Input is abstract;
+   procedure parse(This: access Input) is abstract;
+   function getParams(This: access Input) return access Parameters.Parameter is abstract;
 
 end Inputs;

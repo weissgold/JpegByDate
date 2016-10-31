@@ -1,21 +1,27 @@
 -- Verwendete Packages
-with Globals;
 with Inputs;
-with Filesystemlists;
+with CommandlineParsers;
+with Filters;
+with FileExtensionFilters;
+with FileListers;
+with FilesystemListers;
 with Outputs;
+with ConsoleOutputs;
 
 -- Hauptfunktion
 procedure Main is
-   input_parser : Inputs.Input_Type := Inputs.create;
-   files_parser : Filesystemlists.Filesystemlist_Type := Filesystemlists.create;
+   input: access Inputs.Input'Class := CommandlineParsers.create;
+   filter: access Filters.Filter'Class := FileExtensionFilters.create;
+   files: access FileListers.FileLister'Class;
+   output: access Outputs.Output'Class := ConsoleOutputs.create;
 begin
    -- Eingabe verarbeiten
-   Inputs.parse(input_parser);
-   Outputs.display(Integer'Image(Inputs.getParamCount(input_parser)));
-   Outputs.display(Inputs.getDateString(input_parser));
+   input.parse;
+   output.display(input.getParams.getDate);
 
    -- Dateien auflisten und anzeigen
-   Filesystemlists.listFiles(files_parser, "."); -- "." = aktuelles Verzeichnis
-   Outputs.display(Filesystemlists.getList(files_parser));
-
+   files := FilesystemListers.create(input.getParams.getPath, filter);
+   while files.hasNext loop
+      output.display(files.next);
+   end loop;
 end Main;

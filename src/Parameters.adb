@@ -15,19 +15,19 @@ package body Parameters is
    begin
       This.all.path := Ada.Strings.Unbounded.To_Unbounded_String(path);
    end setPath;
-   procedure setDate(This: access Parameter; date: String) is
+   procedure setDatePattern(This: access Parameter; datePattern: String) is
    begin
-      This.all.date := date;
-   end setDate;
+      This.all.datePattern := datePattern;
+   end setDatePattern;
 
    -- Werte abfragen
    function getPath(This: access Parameter) return String is
    begin
       return Ada.Strings.Unbounded.To_String(This.all.path);
    end getPath;
-   function getDate(This: access Parameter) return String is
+   function getDatePattern(This: access Parameter) return String is
    begin
-      return This.all.date;
-   end getDate;
+      return This.all.datePattern;
+   end getDatePattern;
 
 end Parameters;

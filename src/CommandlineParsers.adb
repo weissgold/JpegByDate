@@ -1,9 +1,11 @@
 -- Verwendete Packages
 with Globals;
 with Ada.Command_Line;
-with GNAT.Regexp;
+with GNAT.Regpat;
+with Ada.Strings.Fixed;
+with Ada.Strings.Maps;
 
--- Package für Eingabemodul
+-- Package fuer Eingabemodul
 package body CommandlineParsers is
 
    -- Konstruktor
@@ -27,11 +29,15 @@ package body CommandlineParsers is
          -- Datumsparamter finden
          if Ada.Command_Line.Argument(I) = Globals.params.date then
             J := I + 1;
-            -- Prüfen ob nächster Parameter existiert
+            -- Pruefen ob naechster Parameter existiert
             if J <= Ada.Command_Line.Argument_Count then
-               -- Regulärer Ausdruck für ISO Date Pattern Matching --> Überarbeiten zu GNAT.Regpat!
-               if GNAT.Regexp.Match(Ada.Command_Line.Argument(J), GNAT.Regexp.Compile(Globals.regexPatternDate)) then
-                  This.all.parameters.setDate(Ada.Command_Line.Argument(J));
+               -- Regulaerer Ausdruck fuer ISO Date Pattern Matching
+               -- Pruefen ob das eingegebene Datum einem Datum mit Wildcards der Form
+               -- 2016-01-?? entspricht.
+               if Boolean'(GNAT.Regpat.Match(Expression => Globals.regexPatternDateWithWildcards, Data => Ada.Command_Line.Argument(J))) then
+                  -- Ersetze die Fragezeichen (CLI-Wildcards) mit Punkten (Regex-Wildcards)
+                  -- und hinterlege dieses Pattern in Parameters
+                  This.all.parameters.setDatePattern(Ada.Strings.Fixed.Translate(Source => Ada.Command_Line.Argument(J), Mapping => Ada.Strings.Maps.To_Mapping(From => "?", To => ".")));
                end if;
             end if;
          end if;

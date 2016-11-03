@@ -19,7 +19,7 @@ procedure Main is
 begin
    -- Eingabe verarbeiten
    input.parse;
-   output.display(input.getParams.getDate);
+   output.display(input.getParams.getDatePattern);
 
    -- Dateien Auflisten und Filtern vorbereiten
    files := FilesystemListers.create(input.getParams.getPath, filter);

@@ -13,18 +13,18 @@ package Parameters is
 
    -- Werte setzen
    procedure setPath(This: access Parameter; path: String);
-   procedure setDate(This: access Parameter; date: String);
+   procedure setDatePattern(This: access Parameter; datePattern: String);
 
    -- Werte abfragen
    function getPath(This: access Parameter) return String;
-   function getDate(This: access Parameter) return String;
+   function getDatePattern(This: access Parameter) return String;
 
 private
    -- Objektvariablen
    type Parameter is tagged
       record
          path: Ada.Strings.Unbounded.Unbounded_String;
-         date: String(1..10) := Globals.defaultDate;
+         datePattern: String(1..10) := Globals.defaultDate;
       end record;
 
 end Parameters;

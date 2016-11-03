@@ -5,10 +5,10 @@
 package Globals is
 
    -- Konstanten Definition
-   regexPatternDate: constant String := "....-..-.."; -- ACHTUNG: Matched auch nicht Zahlen!
+   regexPatternDate: constant String := "....-..-.."; -- ACHTUNG: Zu rudimentaeres Regex!
    regexPatternFiletype: constant String := ".*\.(jpg|jpeg|jpe|jfif)$";
-   defaultDate: constant String := "yyyy-mm-dd";
-   defaultPath: constant String := ".";
+   defaultDate: constant String := "????-??-??"; -- beliebiges Datum
+   defaultPath: constant String := "."; -- aktuelles Ausfuehrungsverzeichnis
 
    package params is
       date : constant String := "-d";

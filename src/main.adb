@@ -5,6 +5,7 @@ with Filters;
 with FileExtensionFilters;
 with FileListers;
 with FilesystemListers;
+with FileHandlers;
 with Outputs;
 with ConsoleOutputs;
 
@@ -13,15 +14,18 @@ procedure Main is
    input: access Inputs.Input'Class := CommandlineParsers.create;
    filter: access Filters.Filter'Class := FileExtensionFilters.create;
    files: access FileListers.FileLister'Class;
+   handler: access FileHandlers.FileHandler;
    output: access Outputs.Output'Class := ConsoleOutputs.create;
 begin
    -- Eingabe verarbeiten
    input.parse;
    output.display(input.getParams.getDate);
 
-   -- Dateien auflisten und anzeigen
+   -- Dateien Auflisten und Filtern vorbereiten
    files := FilesystemListers.create(input.getParams.getPath, filter);
-   while files.hasNext loop
-      output.display(files.next);
-   end loop;
+
+   -- Dateien verarbeiten und anzeigen
+   handler := FileHandlers.create(files, input.getParams);
+   handler.exec(output);
+
 end Main;

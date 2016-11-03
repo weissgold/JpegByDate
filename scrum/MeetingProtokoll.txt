@@ -40,3 +40,7 @@ Sprint Planning Meeting (Sprint 2)
 	- Planung von zukünftiger Dokumentation und automatisierter Tests
 	- Planung von Metriken zur Softwaremessung
 	- Hinzufügen von Aufwandseinschätzungen (Planungspoker)
+
+2016-11-03
+"Daily" Scrum
+	- Umplanung/Aufsplittung des aktuellen Sprints

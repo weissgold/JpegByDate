@@ -51,10 +51,10 @@ package body Pictures.TiffPictures is
          while I < eos loop
             -- EXIF-Tag gefunden
             if picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+0), Ada.Strings.Unbounded.Element(buffer, I+1)) = Globals.exif.tag and
-              picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+2), Ada.Strings.Unbounded.Element(buffer, I+3)) = 4 and
-              picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+4), Ada.Strings.Unbounded.Element(buffer, I+5), Ada.Strings.Unbounded.Element(buffer, I+6), Ada.Strings.Unbounded.Element(buffer, I+7)) = 1 then
+              picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+2), Ada.Strings.Unbounded.Element(buffer, I+3)) = Globals.exif.tag_Type and
+              picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+4), Ada.Strings.Unbounded.Element(buffer, I+5), Ada.Strings.Unbounded.Element(buffer, I+6), Ada.Strings.Unbounded.Element(buffer, I+7)) = Globals.exif.tag_Length then
                -- Neues Offset berechnen
-               I := picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+8), Ada.Strings.Unbounded.Element(buffer, I+9), Ada.Strings.Unbounded.Element(buffer, I+10), Ada.Strings.Unbounded.Element(buffer, I+11)) + 1; -- 0-Index wäre schöner
+               I := picture.createInt(Ada.Strings.Unbounded.Element(buffer, I+8), Ada.Strings.Unbounded.Element(buffer, I+9), Ada.Strings.Unbounded.Element(buffer, I+10), Ada.Strings.Unbounded.Element(buffer, I+11)) + 1; -- 0-Index wäre schöner...
 
                -- Länge überprüfen
                if Ada.Strings.Unbounded.Length(buffer) <= I then
@@ -73,7 +73,7 @@ package body Pictures.TiffPictures is
                declare
                   exif_tmp: access EXIFParsers.EXIFParser := null;
                begin
-                  exif_tmp := EXIFParsers.create(Ada.Strings.Unbounded.Slice(buffer, I+2, I+part_length-1), picture.all.little_endian);
+                  exif_tmp := EXIFParsers.create(Ada.Strings.Unbounded.Slice(buffer, I+2, I+part_length-1), picture);
                   picture.exif := exif_tmp;
                exception
                   -- Falls keine EXIF Informationen vorhanden
@@ -114,6 +114,30 @@ package body Pictures.TiffPictures is
       return This.all.exif;
    end getEXIF;
 
+   -- DWORD und WORD anhand Endianness erstellen
+   function createInt(This: access TiffPicture; b0: Character; b1: Character) return Integer is
+   begin
+      if This.all.little_endian then
+         return Character'Pos(b1) * 16#100# + Character'Pos(b0);
+      else
+         return Character'Pos(b0) * 16#100# + Character'Pos(b1);
+      end if;
+   end createInt;
+   function createInt(This: access TiffPicture; b0: Character; b1: Character; b2: Character; b3: Character) return Integer is
+   begin
+      if This.all.little_endian then
+         return Character'Pos(b3) * 16#1000000# + Character'Pos(b2) * 16#10000# + Character'Pos(b1) * 16#100# + Character'Pos(b0);
+      else
+         return Character'Pos(b0) * 16#1000000# + Character'Pos(b1) * 16#10000# + Character'Pos(b2) * 16#100# + Character'Pos(b3);
+      end if;
+   end createInt;
+
+   -- Binärdaten lesen
+   function readBinary(This: access TiffPicture; First: Integer; Last:Integer) return String is
+   begin
+      return Ada.Strings.Unbounded.Slice(This.all.binary, First, Last);
+   end readBinary;
+
    -- Statische Buffercheckfunktion
    function isTiff(buffer: Ada.Strings.Unbounded.Unbounded_String) return Boolean is
       -- TIFF Magic Numbers:
@@ -140,23 +164,5 @@ package body Pictures.TiffPictures is
          return False;
       end if;
    end isTiff;
-
-   -- Binärdaten lesen
-   function createInt(This: access TiffPicture; b0: Character; b1: Character) return Integer is
-   begin
-      if This.all.little_endian then
-         return Character'Pos(b1) * 16#100# + Character'Pos(b0);
-      else
-         return Character'Pos(b0) * 16#100# + Character'Pos(b1);
-      end if;
-   end createInt;
-   function createInt(This: access TiffPicture; b0: Character; b1: Character; b2: Character; b3: Character) return Integer is
-   begin
-      if This.all.little_endian then
-         return Character'Pos(b3) * 16#1000000# + Character'Pos(b2) * 16#10000# + Character'Pos(b1) * 16#100# + Character'Pos(b0);
-      else
-         return Character'Pos(b0) * 16#1000000# + Character'Pos(b1) * 16#10000# + Character'Pos(b2) * 16#100# + Character'Pos(b3);
-      end if;
-   end createInt;
 
 end Pictures.TiffPictures;

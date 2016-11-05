@@ -18,6 +18,11 @@ package Globals is
    -- EXIF-Tags
    package exif is
       tag: constant Integer := 16#8769#;
+      tag_Type: constant Integer := 4;
+      tag_Length: constant Integer := 1;
+      DateTimeOriginal: constant Integer := 16#9003#;
+      DateTimeOriginal_Type: constant Integer := 2;
+      DateTimeOriginal_Length: constant Integer := 20;
    end exif;
 
 end Globals;

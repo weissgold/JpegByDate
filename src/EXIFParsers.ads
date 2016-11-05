@@ -1,21 +1,24 @@
 -- Verwendete Packages
---> NONE
+limited with Pictures.TiffPictures; -- limited um Circular Dependency zu unterbrechen
 
--- Package für Parameter
+-- Package für EXIFParser
 package EXIFParsers is
 
    -- Typ anlegen
    type EXIFParser is tagged private;
 
-   -- Konstruktor
-   function create(binary: String; little_endian: Boolean) return access EXIFParser;
+   -- Konstruktor (binary ist EXIF SubIFD Directory Entries)
+   function create(binary: String; tiff_parent: access Pictures.TiffPictures.TiffPicture) return access EXIFParser;
+
+   -- Getterfunktionen
+   function getDateTimeOriginal(This: access EXIFParser) return String;
 
 private
    -- Objektvariablen
    type EXIFParser is tagged
       record
-         little_endian: Boolean;
          exif: access String;
+         parent: access Pictures.TiffPictures.TiffPicture;
       end record;
 
 end EXIFParsers;

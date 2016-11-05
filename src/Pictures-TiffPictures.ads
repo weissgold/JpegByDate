@@ -15,14 +15,15 @@ package Pictures.TiffPictures is
    overriding function hasEXIF(This: access TiffPicture) return Boolean;
    overriding function getEXIF(This: access TiffPicture) return access EXIFParsers.EXIFParser;
 
+   -- Binärdaten lesen
+   function createInt(This: access TiffPicture; b0: Character; b1: Character) return Integer;
+   function createInt(This: access TiffPicture; b0: Character; b1: Character; b2: Character; b3: Character) return Integer;
+   function readBinary(This: access TiffPicture; First: Integer; Last:Integer) return String;
+
    -- Statische Buffercheckfunktion
    function isTiff(buffer: Ada.Strings.Unbounded.Unbounded_String) return Boolean;
 
 private
-   -- Binärdaten lesen
-   function createInt(This: access TiffPicture; b0: Character; b1: Character) return Integer;
-   function createInt(This: access TiffPicture; b0: Character; b1: Character; b2: Character; b3: Character) return Integer;
-
    -- Objektvariablen
    type TiffPicture is new Pictures.Picture with
       record

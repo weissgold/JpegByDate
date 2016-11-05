@@ -45,6 +45,7 @@ package body FileHandlers is
                -- Bildnamen und Pfad anzeigen
                if picture.hasEXIF then
                   output.display(picture.getName);
+                  output.display(" -> " & picture.getEXIF.getDateTimeOriginal);
                end if;
 
             exception

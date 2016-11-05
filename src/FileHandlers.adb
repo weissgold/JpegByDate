@@ -43,7 +43,9 @@ package body FileHandlers is
                picture := Pictures.create(Ada.Strings.Unbounded.To_String(str), buffer);
 
                -- Bildnamen und Pfad anzeigen
-               output.display(picture.getName);
+               if picture.hasEXIF then
+                  output.display(picture.getName);
+               end if;
 
             exception
                -- Bei Problemen mit der Bilderstellung oder Verarbeitung

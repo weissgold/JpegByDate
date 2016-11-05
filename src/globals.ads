@@ -10,8 +10,14 @@ package Globals is
    defaultDate: constant String := "????-??-??"; -- beliebiges Datum
    defaultPath: constant String := "."; -- aktuelles Ausfuehrungsverzeichnis
 
+   -- Kommandozeilenparameter
    package params is
-      date : constant String := "-d";
+      date: constant String := "-d";
    end params;
+
+   -- EXIF-Tags
+   package exif is
+      tag: constant Integer := 16#8769#;
+   end exif;
 
 end Globals;

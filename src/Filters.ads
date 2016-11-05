@@ -20,7 +20,7 @@ package Filters is
 
    -- private Funktionen
    -- DO NOT CALL EXTERNALLY! Außer es soll wirklich nur dieser Filter ausgeführt werden
-   -- Sollte private sein, allerdings funktioniert dann die Vererbung nicht... (mit C++ hätte das funktioniert!) -> Wenn möglich Lösung suchen
+   -- Sollte private sein, allerdings funktioniert dann die Vererbung mit abstraktem Typ nicht... (mit C++ hätte das funktioniert!) -> Wenn möglich Lösung suchen
    function applyThis(This: access Filter; str: String) return Boolean is abstract;
 
 private

@@ -7,7 +7,7 @@ package Globals is
    -- Konstanten Definition
    regexPatternDateWithWildcards: constant String := "[0-9?]{4}-[0-9?]{2}-[0-9?]{2}";
    regexPatternFiletype: constant String := ".*\.(jpg|jpeg|jpe|jfif)$";
-   defaultDate: constant String := "????-??-??"; -- beliebiges Datum
+   defaultDate: constant String := "....:..:.."; -- beliebiges Datum (Regex Pattern)
    defaultPath: constant String := "."; -- aktuelles Ausfuehrungsverzeichnis
 
    -- Kommandozeilenparameter

@@ -1,9 +1,9 @@
 -- Verwendete Packages
 with Globals;
 with Ada.Command_Line;
-with GNAT.Regpat;
 with Ada.Strings.Fixed;
 with Ada.Strings.Maps;
+with GNAT.Regpat;
 
 -- Package fuer Eingabemodul
 package body CommandlineParsers is
@@ -35,9 +35,9 @@ package body CommandlineParsers is
                -- Pruefen ob das eingegebene Datum einem Datum mit Wildcards der Form
                -- 2016-01-?? entspricht.
                if Boolean'(GNAT.Regpat.Match(Expression => Globals.regexPatternDateWithWildcards, Data => Ada.Command_Line.Argument(J))) then
-                  -- Ersetze die Fragezeichen (CLI-Wildcards) mit Punkten (Regex-Wildcards)
+                  -- Ersetze die Fragezeichen (CLI-Wildcards) mit Punkten (Regex-Wildcards) und Bindestriche durch Doppelpunkte (EXIF Trennzeichen)
                   -- und hinterlege dieses Pattern in Parameters
-                  This.all.parameters.setDatePattern(Ada.Strings.Fixed.Translate(Source => Ada.Command_Line.Argument(J), Mapping => Ada.Strings.Maps.To_Mapping(From => "?", To => ".")));
+                  This.all.parameters.setDatePattern(Ada.Strings.Fixed.Translate(Ada.Strings.Fixed.Translate(Ada.Command_Line.Argument(J), Ada.Strings.Maps.To_Mapping(From => "?", To => ".")), Ada.Strings.Maps.To_Mapping(From => "-", To => ":")));
                end if;
             end if;
          end if;

@@ -4,6 +4,7 @@ with Ada.Directories;
 with Ada.Direct_IO;
 with Ada.Exceptions;
 with Ada.Strings.Unbounded;
+with GNAT.Regpat;
 
 -- Package für FileHandler
 package body FileHandlers is
@@ -42,10 +43,18 @@ package body FileHandlers is
                -- Bild erstellen
                picture := Pictures.create(Ada.Strings.Unbounded.To_String(str), buffer);
 
-               -- Bildnamen und Pfad anzeigen
+               -- Bildnamen und Pfad anzeigen wenn Bedingungen erfüllt werden
                if picture.hasEXIF then
-                  output.display(picture.getName);
-                  output.display(" -> " & picture.getEXIF.getDateTimeOriginal);
+                  declare
+                     date: String := picture.getEXIF.getDateTimeOriginal;
+                  begin
+                     -- Regex Match des EXIF Datums mit dem Parameter-Date-Pattern
+                     if Boolean'(GNAT.Regpat.Match(Expression => This.all.params.getDatePattern, Data => date(date'First..date'First+9))) then
+                        output.display(picture.getName);
+                        output.display("DEBUG OUTPUT - DateTimeOriginal: " & picture.getEXIF.getDateTimeOriginal);
+                     end if;
+                  end;
+
                end if;
 
             exception

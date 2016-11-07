@@ -44,3 +44,13 @@ Sprint Planning Meeting (Sprint 2)
 2016-11-03
 "Daily" Scrum
 	- Umplanung/Aufsplittung des aktuellen Sprints
+
+2016-11-07
+"Daily" Scrum
+Sprint Review
+	- Fortschritt: Sprint 2 erfolgreich (ADA Programmierung läuft besser, Grundanforderungen erledigt)
+	- Problematik zu langer Sprint Zeitraum, nachträgliche Verkürzung unter geringfügiger Aufwandsreduzierung
+Sprint Planning Meeting (Sprint 3)
+	- Erstellung des Sprint Backlogs (siehe backlog_20161107.png)
+	- GNATTest zum Testen von JpegByDate
+	- Verwendung von Metriken zur Softwaremessung

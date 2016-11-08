@@ -1,5 +1,5 @@
 -- Verwendete Packages
--- NONE
+with Ada.Unchecked_Deallocation;
 
 -- Package für das Auflisten von Dateien
 package body FilesystemListers is
@@ -11,6 +11,19 @@ package body FilesystemListers is
       lister.init(path, filter);
       return lister;
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access FilesystemLister) is
+      type type_access is access all FilesystemLister;
+      procedure Free is new Ada.Unchecked_Deallocation(FilesystemLister, type_access);
+      obj: type_access := type_access(This);
+   begin
+      -- Suche beenden
+      Ada.Directories.End_Search(Search => This.all.FilesystemSearch);
+
+      -- externe Variablen nicht löschen
+      Free(obj);
+   end;
 
    -- Auflisten der Dateien im Suchort
    function hasNext(This: access FilesystemLister) return Boolean is
@@ -69,8 +82,7 @@ package body FilesystemListers is
             end if;
          end loop;
 
-         -- Keinen weiteren Eintrag gefunden -> Suche beenden
-         Ada.Directories.End_Search(Search => This.all.FilesystemSearch);
+         -- Keinen weiteren Eintrag gefunden
          This.all.nextMatch := Ada.Strings.Unbounded.Null_Unbounded_String;
          This.all.hasNextMatch := False;
       end if;

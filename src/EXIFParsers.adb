@@ -2,6 +2,7 @@
 with Globals;
 with Pictures;
 with Pictures.TiffPictures;
+with Ada.Unchecked_Deallocation;
 
 -- Package für EXIFParser
 package body EXIFParsers is
@@ -20,6 +21,23 @@ package body EXIFParsers is
       -- Falsches Datenformat
       raise Pictures.Illegal_Format with "EXIF data has illegal format!";
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access EXIFParser) is
+      type type_access is access all EXIFParser;
+      procedure Free is new Ada.Unchecked_Deallocation(EXIFParser, type_access);
+      type String_Access is access all String;
+      procedure Free_String is new Ada.Unchecked_Deallocation(String, String_Access);
+      obj: type_access := type_access(This);
+      str: String_Access := String_Access(This.all.exif);
+   begin
+      -- externe Variablen nicht löschen
+      -- interne Variablen löschen
+      if This.all.exif /= null then
+         Free_String(str);
+      end if;
+      Free(obj);
+   end;
 
    -- Getterfunktionen
    function getDateTimeOriginal(This: access EXIFParser) return String is

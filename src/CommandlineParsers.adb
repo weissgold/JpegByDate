@@ -3,6 +3,7 @@ with Globals;
 with Ada.Command_Line;
 with Ada.Strings.Fixed;
 with Ada.Strings.Maps;
+with Ada.Unchecked_Deallocation;
 with GNAT.Regpat;
 
 -- Package fuer Eingabemodul
@@ -15,6 +16,19 @@ package body CommandlineParsers is
       input.all.parameters := Parameters.create;
       return input;
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access CommandlineParser) is
+      type type_access is access all CommandlineParser;
+      procedure Free is new Ada.Unchecked_Deallocation(CommandlineParser, type_access);
+      obj: type_access := type_access(This);
+   begin
+      -- interne Variablen löschen
+      if This.all.parameters /= null then
+         This.all.parameters.destroy;
+      end if;
+      Free(obj);
+   end;
 
    -- Kommandozeile verarbeiten
    procedure parse(This: access CommandlineParser) is

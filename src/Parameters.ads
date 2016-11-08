@@ -10,6 +10,8 @@ package Parameters is
 
    -- Konstruktor
    function create return access Parameter;
+   -- Destruktor
+   procedure destroy(This: access Parameter);
 
    -- Werte setzen
    procedure setPath(This: access Parameter; path: String);

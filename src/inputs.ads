@@ -9,6 +9,7 @@ package Inputs is
 
    -- Interfacefunktionen
    function create return access Input is abstract;
+   procedure destroy(This: access Input) is abstract;
    procedure parse(This: access Input) is abstract;
    function getParams(This: access Input) return access Parameters.Parameter is abstract;
 

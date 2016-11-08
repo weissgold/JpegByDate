@@ -4,6 +4,7 @@ with Ada.Directories;
 with Ada.Direct_IO;
 with Ada.Exceptions;
 with Ada.Strings.Unbounded;
+with Ada.Unchecked_Deallocation;
 with GNAT.Regpat;
 
 -- Package für FileHandler
@@ -21,12 +22,22 @@ package body FileHandlers is
       return handler;
    end create;
 
+   -- Destruktor
+   procedure destroy(This: access FileHandler) is
+      type type_access is access all FileHandler;
+      procedure Free is new Ada.Unchecked_Deallocation(FileHandler, type_access);
+      obj: type_access := type_access(This);
+   begin
+      -- externe Variablen nicht löschen
+      Free(obj);
+   end;
+
    -- Dateien verarbeiten
    procedure exec(This: access FileHandler; output: access Outputs.Output'Class) is
       str: Ada.Strings.Unbounded.Unbounded_String;
       buffer: Ada.Strings.Unbounded.Unbounded_String;
       size: Integer;
-      picture: access Pictures.Picture'Class;
+      picture: access Pictures.Picture'Class := null;
    begin
       -- Ausgabe aller Dateien in der Liste
       while This.all.files.hasNext loop
@@ -54,7 +65,6 @@ package body FileHandlers is
                         output.display("DEBUG OUTPUT - DateTimeOriginal: " & picture.getEXIF.getDateTimeOriginal);
                      end if;
                   end;
-
                end if;
 
             exception
@@ -74,6 +84,13 @@ package body FileHandlers is
             null;
 
          end if;
+
+         -- Bild löschen
+         if picture /= null then
+            picture.destroy;
+            picture := null;
+         end if;
+
       end loop;
    end exec;
 

@@ -10,6 +10,8 @@ package Pictures.TiffPictures is
 
    -- Konstruktor
    not overriding function create(name: String; buffer: Ada.Strings.Unbounded.Unbounded_String) return access TiffPicture;
+   -- Destruktor
+   overriding procedure destroy(This: access TiffPicture);
 
    -- EXIF abfragen
    overriding function hasEXIF(This: access TiffPicture) return Boolean;
@@ -27,7 +29,7 @@ private
    -- Objektvariablen
    type TiffPicture is new Pictures.Picture with
       record
-         exif: access EXIFParsers.EXIFParser := null;
+         exif: access EXIFParsers.EXIFParser := null; -- intern
          little_endian: Boolean := False;
       end record;
 

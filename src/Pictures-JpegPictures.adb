@@ -1,5 +1,5 @@
 -- Verwendete Packages
---> NONE
+with Ada.Unchecked_Deallocation;
 
 -- Package für JpegPicture  als Childpackage von Picture
 package body Pictures.JpegPictures is
@@ -18,7 +18,7 @@ package body Pictures.JpegPictures is
 
          -- EXIF Format suchen
          declare
-            tiff: access TiffPictures.TiffPicture;
+            tiff: access TiffPictures.TiffPicture := null;
             I: Integer := 3; -- Start nach SOI
             part_length: Integer;
          begin
@@ -70,6 +70,19 @@ package body Pictures.JpegPictures is
          raise Unknown_Format with "File does not contain Jpeg data!";
       end if;
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access JpegPicture) is
+      type type_access is access all JpegPicture;
+      procedure Free is new Ada.Unchecked_Deallocation(JpegPicture, type_access);
+      obj: type_access := type_access(This);
+   begin
+      -- interne Variablen löschen
+      if This.all.tiff_sublayer /= null then
+         This.all.tiff_sublayer.destroy;
+      end if;
+      Free(obj);
+   end;
 
    -- Bild EXIF Informationen vorhanden
    function hasEXIF(This: access JpegPicture) return Boolean is

@@ -23,7 +23,7 @@ package body Filters is
    end apply;
 
    -- Neuen Filter an Kette anfügen
-   procedure addNew(This: access Filter; newFilter: access Filter) is
+   procedure addNew(This: access Filter; newFilter: access Filter'Class) is
    begin
       if This.all.next /= null then
          -- Neuen Filter in Kette weiterreichen

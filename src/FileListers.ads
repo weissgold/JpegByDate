@@ -12,6 +12,7 @@ package FileListers is
 
    -- Interfacefunktionen
    function create(path: String; filter: access Filters.Filter'Class) return access FileLister is abstract;
+   procedure destroy(This: access FileLister) is abstract;
    function hasNext(This: access FileLister) return Boolean is abstract;
    function next(This: access FileLister) return String is abstract;
 

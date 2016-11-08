@@ -2,9 +2,9 @@ project JpegByDate is
 
    for Object_Dir use "./../bin";
    for Main use ("main.adb");
-   for Source_Files use ("CommandlineParsers.adb", "CommandlineParsers.ads", "ConsoleOutputs.adb", "ConsoleOutputs.ads", "EXIFParsers.adb", "EXIFParsers.ads", "FileExtensionFilters.adb", "FileExtensionFilters.ads", "FileHandlers.adb", 
-      "FileHandlers.ads", "FileListers.ads", "FilesystemListers.adb", "FilesystemListers.ads", "Filters.adb", "Filters.ads", "globals.ads", "Inputs.ads", "main.adb", "Outputs.ads", "Parameters.adb", "Parameters.ads", 
-      "Pictures-JpegPictures.adb", "Pictures-JpegPictures.ads", "Pictures-TiffPictures.adb", "Pictures-TiffPictures.ads", "Pictures.adb", "Pictures.ads");
+   for Source_Files use ("CommandlineParsers.adb", "CommandlineParsers.ads", "ConsoleOutputs.adb", "ConsoleOutputs.ads", "EXIFParsers.adb", "EXIFParsers.ads", "FileHandlers.adb", "FileHandlers.ads", "FileListers.ads", 
+      "FilesystemListers.adb", "FilesystemListers.ads", "Filters-FileExtensionFilters.adb", "Filters-FileExtensionFilters.ads", "Filters.adb", "Filters.ads", "globals.ads", "Inputs.ads", "main.adb", "Outputs.ads", "Parameters.adb", 
+      "Parameters.ads", "Pictures-JpegPictures.adb", "Pictures-JpegPictures.ads", "Pictures-TiffPictures.adb", "Pictures-TiffPictures.ads", "Pictures.adb", "Pictures.ads");
 
    package Ide is
       for Vcs_Kind use "Git";

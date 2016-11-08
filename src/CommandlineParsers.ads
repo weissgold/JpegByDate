@@ -10,6 +10,8 @@ package CommandlineParsers is
 
    -- Konstruktor
    overriding function create return access CommandlineParser;
+   -- Destruktor
+   overriding procedure destroy(This: access CommandlineParser);
 
    -- Eingabewerte verarbeiten
    overriding procedure parse(This: access CommandlineParser);
@@ -21,7 +23,7 @@ private
    -- Objektvariablen
    type CommandlineParser is new Inputs.Input with
       record
-         parameters: access Parameters.Parameter;
+         parameters: access Parameters.Parameter := null; -- intern
       end record;
 
 end CommandlineParsers;

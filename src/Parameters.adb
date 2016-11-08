@@ -1,5 +1,5 @@
 -- Verwendete Packages
---> NONE
+with Ada.Unchecked_Deallocation;
 
 -- Package für Parameter
 package body Parameters is
@@ -9,6 +9,15 @@ package body Parameters is
    begin
       return new Parameter;
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access Parameter) is
+      type type_access is access all Parameter;
+      procedure Free is new Ada.Unchecked_Deallocation(Parameter, type_access);
+      obj: type_access := type_access(This);
+   begin
+      Free(obj);
+   end;
 
    -- Werte setzen
    procedure setPath(This: access Parameter; path: String) is

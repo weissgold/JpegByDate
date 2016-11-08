@@ -9,6 +9,7 @@ package Outputs is
 
    -- Interfacefunktionen
    function create return access Output is abstract;
+   procedure destroy(This: access Output) is abstract;
    procedure display(This: access Output; str: String) is abstract;
 
 end Outputs;

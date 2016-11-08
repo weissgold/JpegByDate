@@ -9,6 +9,7 @@ package Filters is
 
    -- Interfacefunktionen
    function create return access Filter is abstract;
+   procedure destroy(This: access Filter) is abstract;
 
    -- Filter anwenden
    -- DO NOT OVERLOAD!
@@ -16,7 +17,7 @@ package Filters is
 
    -- Neuen Filter an Kette anfügen
    -- DO NOT OVERLOAD!
-   procedure addNew(This: access Filter; newFilter: access Filter);
+   procedure addNew(This: access Filter; newFilter: access Filter'Class);
 
    -- private Funktionen
    -- DO NOT CALL EXTERNALLY! Außer es soll wirklich nur dieser Filter ausgeführt werden
@@ -27,7 +28,7 @@ private
    -- Objektvariablen
    type Filter is abstract tagged
       record
-         next: access Filter := null;
+         next: access Filter'Class := null; -- extern -> trotzdem intern löschen, da Kette
       end record;
 
 end Filters;

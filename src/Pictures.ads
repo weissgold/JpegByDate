@@ -10,6 +10,7 @@ package Pictures is
 
    -- Interfacefunktionen
    function create(name: String; buffer: Ada.Strings.Unbounded.Unbounded_String) return access Picture'Class;
+   procedure destroy(This: access Picture) is abstract;
 
    -- Name und Pfad des Bildes zurückgeben
    -- DO NOT OVERLOAD!

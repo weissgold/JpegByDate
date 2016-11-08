@@ -11,6 +11,8 @@ package FileHandlers is
 
    -- Konstruktor
    function create(files: access FileListers.FileLister'Class; params: access Parameters.Parameter) return access FileHandler;
+   -- Destruktor
+   procedure destroy(This: access FileHandler);
 
    -- Dateien verarbeiten
    procedure exec(This: access FileHandler; output: access Outputs.Output'Class);
@@ -19,8 +21,8 @@ private
    -- Objektvariablen
    type FileHandler is tagged
       record
-         files: access FileListers.FileLister'Class;
-         params: access Parameters.Parameter;
+         files: access FileListers.FileLister'Class := null; -- extern
+         params: access Parameters.Parameter := null; -- extern
       end record;
 
 end FileHandlers;

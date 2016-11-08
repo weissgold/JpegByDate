@@ -12,6 +12,8 @@ package FilesystemListers is
 
    -- Konstruktor
    overriding function create(path: String; filter: access Filters.Filter'Class) return access FilesystemLister;
+   -- Destruktor
+   overriding procedure destroy(This: access FilesystemLister);
 
    -- Auflisten der Dateien im Suchort
    overriding function hasNext(This: access FilesystemLister) return Boolean;
@@ -29,7 +31,7 @@ private
 
          -- Vorbereitung der Verzeichnissuche
          FilesystemSearch: Ada.Directories.Search_Type;
-         filter: access Filters.Filter;
+         filter: access Filters.Filter := null; -- extern
       end record;
 
    -- Initialisierungsfunktion

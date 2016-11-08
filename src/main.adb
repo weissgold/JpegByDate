@@ -2,7 +2,7 @@
 with Inputs;
 with CommandlineParsers;
 with Filters;
-with FileExtensionFilters;
+with Filters.FileExtensionFilters;
 with FileListers;
 with FilesystemListers;
 with FileHandlers;
@@ -12,7 +12,7 @@ with ConsoleOutputs;
 -- Hauptfunktion
 procedure Main is
    input: access Inputs.Input'Class := CommandlineParsers.create;
-   filter: access Filters.Filter'Class := FileExtensionFilters.create;
+   filter: access Filters.Filter'Class := Filters.FileExtensionFilters.create;
    files: access FileListers.FileLister'Class;
    handler: access FileHandlers.FileHandler;
    output: access Outputs.Output'Class := ConsoleOutputs.create;
@@ -27,5 +27,12 @@ begin
    -- Dateien verarbeiten und anzeigen
    handler := FileHandlers.create(files, input.getParams);
    handler.exec(output);
+
+   -- Aufräumen
+   input.destroy;
+   filter.destroy;
+   files.destroy;
+   handler.destroy;
+   output.destroy;
 
 end Main;

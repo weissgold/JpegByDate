@@ -9,6 +9,8 @@ package ConsoleOutputs is
 
    -- Konstruktor
    overriding function create return access ConsoleOutput;
+   -- Destruktor
+   overriding procedure destroy(This: access ConsoleOutput);
 
    -- Anzeigefunktion für String
    overriding procedure display(This: access ConsoleOutput; str: String);

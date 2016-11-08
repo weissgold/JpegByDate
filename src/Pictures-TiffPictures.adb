@@ -1,5 +1,6 @@
 -- Verwendete Packages
 with Globals;
+with Ada.Unchecked_Deallocation;
 
 -- Package für TiffPicture  als Childpackage von Picture
 package body Pictures.TiffPictures is
@@ -97,6 +98,19 @@ package body Pictures.TiffPictures is
          raise Unknown_Format with "File does not contain Tiff data!";
       end if;
    end create;
+
+   -- Destruktor
+   procedure destroy(This: access TiffPicture) is
+      type type_access is access all TiffPicture;
+      procedure Free is new Ada.Unchecked_Deallocation(TiffPicture, type_access);
+      obj: type_access := type_access(This);
+   begin
+      -- interne Variablen löschen
+      if This.all.exif /= null then
+         This.all.exif.destroy;
+      end if;
+      Free(obj);
+   end;
 
    -- Bild EXIF Informationen vorhanden
    function hasEXIF(This: access TiffPicture) return Boolean is
